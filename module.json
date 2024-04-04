@@ -1,0 +1,13 @@
+{
+    "name": "Airtime",
+    "alias": "airtime",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
