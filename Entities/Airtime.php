@@ -13,7 +13,7 @@ class Airtime extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['id', 'phone', 'amount', 'paid', 'payment_id', 'user_id', 'purchase_date', 'prefix_id', 'provider_id', 'country_id', 'completed', 'successful', 'status'];
+    protected $fillable = ['id', 'phone', 'amount', 'paid', 'payment_id', 'partner_id', 'purchase_date', 'prefix_id', 'provider_id', 'country_id', 'completed', 'successful', 'status'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -51,7 +51,7 @@ class Airtime extends BaseModel
         $this->fields->decimal('amount', 11);
         $this->fields->boolean('paid')->nullable()->html('switch')->default(false);
         $this->fields->bigInteger('payment_id')->nullable()->html('recordpicker')->relation(['account', 'invoice']);
-        $this->fields->integer('user_id')->nullable()->html('recordpicker')->relation(['partner']);
+        $this->fields->integer('partner_id')->nullable()->html('recordpicker')->relation(['partner']);
         $this->fields->dateTime('purchase_date', 6)->nullable()->html('datetime');
         $this->fields->bigInteger('prefix_id')->nullable()->html('recordpicker')->relation(['airtime', 'prefix']);
         $this->fields->bigInteger('provider_id')->nullable()->html('recordpicker')->relation(['airtime', 'provider']);
@@ -66,13 +66,13 @@ class Airtime extends BaseModel
      */
     public function structure($structure): array
     {
-        $structure['table'] = ['phone', 'amount', 'paid', 'payment_id', 'user_id', 'purchase_date', 'prefix_id', 'provider_id', 'country_id', 'completed', 'successful', 'status'];
+        $structure['table'] = ['phone', 'amount', 'paid', 'payment_id', 'partner_id', 'purchase_date', 'prefix_id', 'provider_id', 'country_id', 'completed', 'successful', 'status'];
         $structure['form'] = [
-            ['label' => 'Airtime Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['phone', 'amount', 'paid', 'user_id']],
+            ['label' => 'Airtime Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['phone', 'amount', 'paid', 'partner_id']],
             ['label' => 'Airtime Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['purchase_date', 'prefix_id', 'provider_id', 'country_id']],
             ['label' => 'Airtime Payment Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['payment_id', 'completed', 'successful', 'status']],
         ];
-        $structure['filter'] = ['phone', 'amount', 'paid', 'payment_id', 'user_id', 'purchase_date', 'prefix_id', 'provider_id', 'country_id', 'completed', 'successful', 'status'];
+        $structure['filter'] = ['phone', 'amount', 'paid', 'payment_id', 'partner_id', 'purchase_date', 'prefix_id', 'provider_id', 'country_id', 'completed', 'successful', 'status'];
 
         return $structure;
     }

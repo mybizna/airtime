@@ -13,7 +13,7 @@ class Phone extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['id', 'phone', 'user_id'];
+    protected $fillable = ['id', 'phone', 'partner_id'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -48,7 +48,7 @@ class Phone extends BaseModel
 
         $this->fields->increments('id')->html('hidden');
         $this->fields->bigInteger('phone')->html('text');
-        $this->fields->integer('user_id')->nullable()->html('recordpicker')->relation(['partner']);
+        $this->fields->integer('partner_id')->nullable()->html('recordpicker')->relation(['partner']);
 
     }
     /**
@@ -56,11 +56,11 @@ class Phone extends BaseModel
      */
     public function structure($structure): array
     {
-        $structure['table'] = ['phone', 'user_id'];
+        $structure['table'] = ['phone', 'partner_id'];
         $structure['form'] = [
-            ['label' => 'Aireime User Phone', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['phone', 'user_id']],
+            ['label' => 'Aireime User Phone', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['phone', 'partner_id']],
         ];
-        $structure['filter'] = ['phone', 'user_id'];
+        $structure['filter'] = ['phone', 'partner_id'];
         return $structure;
     }
 

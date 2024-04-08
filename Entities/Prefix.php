@@ -13,7 +13,7 @@ class Prefix extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = [ 'id', 'prefix', 'published', 'provider_id'];
+    protected $fillable = ['id', 'prefix', 'published', 'provider_id'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -46,7 +46,7 @@ class Prefix extends BaseModel
     {
         $this->fields = $table ?? new Blueprint($this->table);
 
-        $this->fields->increments('id' )->html('hidden');
+        $this->fields->increments('id')->html('hidden');
         $this->fields->integer('prefix')->html('text');
         $this->fields->boolean('published')->html('switch')->default(false);
         $this->fields->bigInteger('provider_id')->nullable()->html('recordpicker')->relation(['airtime', 'provider']);

@@ -26,7 +26,7 @@ class AirtimeProcessor
         $converter = Currency::where('code', 'KES')->first();
 
         $paymentDict = [
-            "user_id" => $airtime->user_id,
+            "partner_id" => $airtime->partner_id,
             "app_name" => 'airtime',
             "model_name" => 'Airtime',
             "next_to" => 'user_airtime_list',
@@ -101,8 +101,8 @@ class AirtimeProcessor
                 $converter = Currency::where('code', 'KES')->first();
 
                 Transaction::create([
-                    "user_id" => $payment->user_id,
-                    "from_user_id" => $payment->user_id,
+                    "partner_id" => $payment->partner_id,
+                    "from_partner_id" => $payment->partner_id,
                     "payment_id" => $payment->id,
                     "description" => 'Purchase Airtime to ' . $airtime->phone . ' worth ' . ($airtime->amount / $converter->rate),
                     "money_out" => $payment->amount,

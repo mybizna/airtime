@@ -13,7 +13,7 @@ class Number extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['id', 'phone', 'date_used', 'is_used', 'user_id', 'serial_no'];
+    protected $fillable = ['id', 'phone', 'date_used', 'is_used', 'partner_id', 'serial_no'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -50,7 +50,7 @@ class Number extends BaseModel
         $this->fields->bigInteger('phone')->html('text');
         $this->fields->dateTime('date_used', 6)->nullable()->html('datetime');
         $this->fields->boolean('is_used')->nullable()->html('switch')->default(false);
-        $this->fields->integer('user_id')->nullable()->html('recordpicker')->relation(['partner']);
+        $this->fields->integer('partner_id')->nullable()->html('recordpicker')->relation(['partner']);
         $this->fields->bigInteger('serial_no');
 
     }
@@ -59,11 +59,11 @@ class Number extends BaseModel
      */
     public function structure($structure): array
     {
-        $structure['table'] = ['phone', 'date_used', 'is_used', 'user_id', 'serial_no'];
+        $structure['table'] = ['phone', 'date_used', 'is_used', 'partner_id', 'serial_no'];
         $structure['form'] = [
-            ['label' => 'Airtime Number', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['phone', 'date_used', 'is_used', 'user_id', 'serial_no']],
+            ['label' => 'Airtime Number', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['phone', 'date_used', 'is_used', 'partner_id', 'serial_no']],
         ];
-        $structure['filter'] = ['phone', 'date_used', 'is_used', 'user_id', 'serial_no'];
+        $structure['filter'] = ['phone', 'date_used', 'is_used', 'partner_id', 'serial_no'];
         return $structure;
     }
 

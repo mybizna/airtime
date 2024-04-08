@@ -17,8 +17,8 @@ class Counter
         $maxLevel = config('global_preferences.airtime__phone_not_set_max_level');
         $noOfDays = $resource->requirement_no_of_days;
 
-        $phone = Phone::where('user_id', $affiliate->user_id)->first();
-        $number = Number::where('user_id', $affiliate->user_id)->first();
+        $phone = Phone::where('partner_id', $affiliate->partner_id)->first();
+        $number = Number::where('partner_id', $affiliate->partner_id)->first();
 
         if ($phone && $number) {
             $endDate = Carbon::now();
