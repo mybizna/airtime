@@ -1,6 +1,10 @@
 <template>
-    <div>
-        <h1>Airtime History</h1>
+    <div class="p-2">
+
+        <h1 class="text-xl font-bold text-gray-900 dark:text-gray-50 lg:text-3xl lg:leading-[36.4px]">
+            Airtime History
+        </h1>
+       
         <table class="table">
             <thead>
                 <tr>
