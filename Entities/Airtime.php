@@ -16,20 +16,6 @@ class Airtime extends BaseModel
     protected $fillable = ['id', 'phone', 'amount', 'paid', 'payment_id', 'partner_id', 'purchase_date', 'prefix_id', 'provider_id', 'country_id', 'completed', 'successful', 'status'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['phone'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = [];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -61,35 +47,7 @@ class Airtime extends BaseModel
         $this->fields->boolean('status')->nullable()->html('switch')->default(false);
 
     }
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-        $structure['table'] = ['phone', 'amount', 'paid', 'payment_id', 'partner_id', 'purchase_date', 'prefix_id', 'provider_id', 'country_id', 'completed', 'successful', 'status'];
-        $structure['form'] = [
-            ['label' => 'Airtime Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['phone', 'amount', 'paid', 'partner_id']],
-            ['label' => 'Airtime Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['purchase_date', 'prefix_id', 'provider_id', 'country_id']],
-            ['label' => 'Airtime Payment Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['payment_id', 'completed', 'successful', 'status']],
-        ];
-        $structure['filter'] = ['phone', 'amount', 'paid', 'payment_id', 'partner_id', 'purchase_date', 'prefix_id', 'provider_id', 'country_id', 'completed', 'successful', 'status'];
+  
 
-        return $structure;
-    }
-
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
-
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = ['view' => true];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
+  
 }

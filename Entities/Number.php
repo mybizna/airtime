@@ -16,20 +16,6 @@ class Number extends BaseModel
     protected $fillable = ['id', 'phone', 'date_used', 'is_used', 'partner_id', 'serial_no'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['phone'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = [];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -54,32 +40,7 @@ class Number extends BaseModel
         $this->fields->bigInteger('serial_no');
 
     }
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-        $structure['table'] = ['phone', 'date_used', 'is_used', 'partner_id', 'serial_no'];
-        $structure['form'] = [
-            ['label' => 'Airtime Number', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['phone', 'date_used', 'is_used', 'partner_id', 'serial_no']],
-        ];
-        $structure['filter'] = ['phone', 'date_used', 'is_used', 'partner_id', 'serial_no'];
-        return $structure;
-    }
+ 
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
 
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = [];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
 }

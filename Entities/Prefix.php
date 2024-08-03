@@ -16,20 +16,6 @@ class Prefix extends BaseModel
     protected $fillable = ['id', 'prefix', 'published', 'provider_id'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['prefix'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = [];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -52,32 +38,6 @@ class Prefix extends BaseModel
         $this->fields->bigInteger('provider_id')->nullable()->html('recordpicker')->relation(['airtime', 'provider']);
 
     }
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-        $structure['table'] = ['prefix', 'published', 'provider_id'];
-        $structure['form'] = [
-            ['label' => 'Airtime Prefix', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['prefix', 'published', 'provider_id']],
-        ];
-        $structure['filter'] = ['prefix', 'published', 'provider_id'];
-        return $structure;
-    }
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
-
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = [];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
+ 
 }
