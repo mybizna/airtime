@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('airtime_provider', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name');
+            $table->longText('description')->nullable();
+            $table->boolean('published')->default(false);
+            $table->string('alias');
             
             $table->timestamps();
         });

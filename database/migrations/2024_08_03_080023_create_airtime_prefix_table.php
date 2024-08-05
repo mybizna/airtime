@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('airtime_prefix', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->integer('prefix');
+            $table->boolean('published')->default(false);
+            $table->bigInteger('provider_id')->nullable();
+
             $table->timestamps();
         });
     }

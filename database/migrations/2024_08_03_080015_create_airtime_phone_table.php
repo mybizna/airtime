@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('airtime_phone', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->bigInteger('phone');
+            $table->integer('partner_id')->nullable();
+
             $table->timestamps();
         });
     }
