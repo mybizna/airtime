@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->integer('prefix');
             $table->boolean('published')->default(false);
-            $table->bigInteger('provider_id')->nullable();
+            $table->foreignId('provider_id')->nullable();
 
             $table->timestamps();
         });

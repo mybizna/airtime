@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->bigInteger('phone');
-            $table->integer('partner_id')->nullable();
+            $table->foreignId('partner_id')->nullable();
 
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('phone');
             $table->dateTime('date_used', 6)->nullable();
             $table->boolean('is_used')->nullable()->default(false);
-            $table->integer('partner_id')->nullable();
+            $table->foreignId('partner_id')->nullable();
             $table->bigInteger('serial_no');
 
             
