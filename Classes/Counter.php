@@ -2,10 +2,10 @@
 
 namespace Modules\Airtime\Classes;
 
-use Modules\Airtime\Entities\Airtime;
-use Modules\Airtime\Entities\Phone;
-use Modules\Airtime\Entities\Number;
 use Carbon\Carbon;
+use Modules\Airtime\Models\Airtime;
+use Modules\Airtime\Models\Number;
+use Modules\Airtime\Models\Phone;
 
 class Counter
 {
@@ -22,7 +22,7 @@ class Counter
 
         if ($phone && $number) {
             $endDate = Carbon::now();
-            $startDate = $endDate->subDays((int)$noOfDays);
+            $startDate = $endDate->subDays((int) $noOfDays);
 
             $totalAmount = Airtime::where('phone', $number->phone)
                 ->whereBetween('created_at', [$startDate, $endDate])

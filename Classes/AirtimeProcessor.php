@@ -2,11 +2,11 @@
 
 namespace Modules\Airtime\Classes;
 
-use Modules\Payment\Entities\Transaction;
-use Modules\Setup\Entities\Currency;
-use Modules\Setup\Entities\Prefix;
-use Modules\Setup\Entities\Provider;
 use Carbon\Carbon;
+use Modules\Payment\Models\Transaction;
+use Modules\Setup\Models\Currency;
+use Modules\Setup\Models\Prefix;
+use Modules\Setup\Models\Provider;
 
 class AirtimeProcessor
 {

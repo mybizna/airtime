@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Airtime\Entities;
+namespace Modules\Airtime\Models;
 
-use Modules\Base\Entities\BaseModel;
+use Modules\Base\Models\BaseModel;
 
 class Provider extends BaseModel
 {
