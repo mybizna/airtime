@@ -22,7 +22,7 @@ return new class extends Migration
             $table->dateTime('purchase_date', 6)->nullable();
             $table->foreignId('prefix_id')->constrained('airtime_prefix')->onDelete('cascade')->nullable()->index('airtime_airtime_prefix_id');
             $table->foreignId('provider_id')->constrained('airtime_provider')->onDelete('cascade')->nullable()->index('airtime_airtime_provider_id');
-            $table->foreignId('country_id')->constrained('airtime_country')->onDelete('cascade')->nullable()->index('airtime_airtime_country_id');
+            $table->foreignId('country_id')->constrained('core_country')->onDelete('cascade')->nullable()->index('airtime_airtime_country_id');
             $table->boolean('completed')->nullable()->default(false);
             $table->boolean('successful')->nullable()->default(false);
             $table->boolean('status')->nullable()->default(false);
