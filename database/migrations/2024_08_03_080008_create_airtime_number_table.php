@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('phone');
             $table->dateTime('date_used', 6)->nullable();
             $table->boolean('is_used')->nullable()->default(false);
-            $table->foreignId('partner_id')->nullable();
+            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('partner_id');
             $table->bigInteger('serial_no');
 
             

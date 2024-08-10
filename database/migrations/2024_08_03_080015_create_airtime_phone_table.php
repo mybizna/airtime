@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->bigInteger('phone');
-            $table->foreignId('partner_id')->nullable();
+            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('partner_id');
 
             $table->timestamps();
         });

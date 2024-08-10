@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('airtime_airtime', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('phone');
+            $table->bigInteger('phone');
             $table->decimal('amount', 11);
             $table->boolean('paid')->nullable()->default(false);
-            $table->foreignId('payment_id')->nullable();
-            $table->foreignId('partner_id')->nullable();
+            $table->foreignId('payment_id')->constrained('account_payment')->onDelete('cascade')->nullable()->index('payment_id');
+            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('partner_id');
             $table->dateTime('purchase_date', 6)->nullable();
-            $table->foreignId('prefix_id')->nullable();
-            $table->foreignId('provider_id')->nullable();
-            $table->foreignId('country_id')->nullable();
+            $table->foreignId('prefix_id')->constrained('airtime_prefix')->onDelete('cascade')->nullable()->index('prefix_id');
+            $table->foreignId('provider_id')->constrained('airtime_provider')->onDelete('cascade')->nullable()->index('provider_id');
+            $table->foreignId('country_id')->constrained('airtime_country')->onDelete('cascade')->nullable()->index('country_id');
             $table->boolean('completed')->nullable()->default(false);
             $table->boolean('successful')->nullable()->default(false);
             $table->boolean('status')->nullable()->default(false);
