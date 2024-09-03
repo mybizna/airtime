@@ -20,5 +20,4 @@ class Airtime extends BaseModel
      * @var string
      */
     protected $table = "airtime_airtime";
-
 }

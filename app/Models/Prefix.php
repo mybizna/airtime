@@ -20,5 +20,4 @@ class Prefix extends BaseModel
      * @var string
      */
     protected $table = "airtime_prefix";
-
 }
