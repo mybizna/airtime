@@ -2,9 +2,6 @@
 
 namespace Modules\Airtime\Filament\Resources;
 
-use Modules\Airtime\Filament\Resources\NumberResource\Pages;
-use Modules\Airtime\Filament\Resources\NumberResource\RelationManagers;
-use Modules\Airtime\Models\Number;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +9,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Airtime\Filament\Resources\NumberResource\Pages;
+use Modules\Airtime\Models\Number;
 
 class NumberResource extends Resource
 {
     protected static ?string $model = Number::class;
+
+    protected static ?string $slug = 'airtime/number';
+
+    protected static ?string $navigationGroup = 'Airtime';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

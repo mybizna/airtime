@@ -2,9 +2,6 @@
 
 namespace Modules\Airtime\Filament\Resources;
 
-use Modules\Airtime\Filament\Resources\PhoneResource\Pages;
-use Modules\Airtime\Filament\Resources\PhoneResource\RelationManagers;
-use Modules\Airtime\Models\Phone;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +9,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Airtime\Filament\Resources\PhoneResource\Pages;
+use Modules\Airtime\Models\Phone;
 
 class PhoneResource extends Resource
 {
     protected static ?string $model = Phone::class;
+
+    protected static ?string $slug = 'airtime/phone';
+
+    protected static ?string $navigationGroup = 'Airtime';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

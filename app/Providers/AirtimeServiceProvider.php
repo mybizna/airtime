@@ -9,7 +9,7 @@ class AirtimeServiceProvider extends ServiceProvider
 {
     protected string $moduleName = 'Airtime';
 
-    protected string $moduleNameLower = 'Airtime';
+    protected string $moduleNameLower = 'airtime';
 
     /**
      * Boot the application events.

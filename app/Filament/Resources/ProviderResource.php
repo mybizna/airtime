@@ -2,9 +2,6 @@
 
 namespace Modules\Airtime\Filament\Resources;
 
-use Modules\Airtime\Filament\Resources\ProviderResource\Pages;
-use Modules\Airtime\Filament\Resources\ProviderResource\RelationManagers;
-use Modules\Airtime\Models\Provider;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +9,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Airtime\Filament\Resources\ProviderResource\Pages;
+use Modules\Airtime\Models\Provider;
 
 class ProviderResource extends Resource
 {
     protected static ?string $model = Provider::class;
+
+    protected static ?string $slug = 'airtime/provider';
+
+    protected static ?string $navigationGroup = 'Airtime';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
