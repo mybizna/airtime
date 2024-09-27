@@ -16,9 +16,14 @@ return new class extends Migration
 
             $table->integer('prefix');
             $table->boolean('published')->default(false);
-            $table->foreignId('provider_id')->constrained('airtime_provider')->onDelete('cascade')->nullable()->index('airtime_prefix_provider_id');
+            $table->foreignId('provider_id')->nullable()->constrained('airtime_provider')->onDelete('set null');
+
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

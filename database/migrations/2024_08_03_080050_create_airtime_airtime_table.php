@@ -17,17 +17,22 @@ return new class extends Migration
             $table->bigInteger('phone');
             $table->decimal('amount', 11);
             $table->boolean('paid')->nullable()->default(false);
-            $table->foreignId('payment_id')->constrained('account_payment')->onDelete('cascade')->nullable()->index('airtime_airtime_payment_id');
-            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('airtime_airtime_partner_id');
+            $table->foreignId('payment_id')->nullable()->constrained('account_payment')->onDelete('set null');
+            $table->foreignId('partner_id')->nullable()->constrained('partner_partner')->onDelete('set null');
             $table->dateTime('purchase_date', 6)->nullable();
-            $table->foreignId('prefix_id')->constrained('airtime_prefix')->onDelete('cascade')->nullable()->index('airtime_airtime_prefix_id');
-            $table->foreignId('provider_id')->constrained('airtime_provider')->onDelete('cascade')->nullable()->index('airtime_airtime_provider_id');
-            $table->foreignId('country_id')->constrained('core_country')->onDelete('cascade')->nullable()->index('airtime_airtime_country_id');
+            $table->foreignId('prefix_id')->nullable()->constrained('airtime_prefix')->onDelete('set null');
+            $table->foreignId('provider_id')->nullable()->constrained('airtime_provider')->onDelete('set null');
+            $table->foreignId('country_id')->nullable()->constrained('core_country')->onDelete('set null');
             $table->boolean('completed')->nullable()->default(false);
             $table->boolean('successful')->nullable()->default(false);
             $table->boolean('status')->nullable()->default(false);
 
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
