@@ -4,15 +4,12 @@ namespace Modules\Airtime\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Modules\Airtime\Filament\Resources\AirtimeResource\Pages;
 use Modules\Airtime\Models\Airtime;
+use Modules\Base\Filament\Resources\BaseResource;
 
-class AirtimeResource extends Resource
+class AirtimeResource extends BaseResource
 {
     protected static ?string $model = Airtime::class;
 
@@ -116,27 +113,4 @@ class AirtimeResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListAirtimes::route('/'),
-            'create' => Pages\CreateAirtime::route('/create'),
-            'edit' => Pages\EditAirtime::route('/{record}/edit'),
-        ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }
 }
