@@ -6,9 +6,9 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Modules\Airtime\Filament\Resources\PhoneResource\Pages;
 use Modules\Airtime\Models\Phone;
 use Modules\Base\Filament\Resources\BaseResource;
-use Modules\Base\Filament\Resources\Pages;
 
 class PhoneResource extends BaseResource
 {
@@ -70,13 +70,10 @@ class PhoneResource extends BaseResource
 
     public static function getPages(): array
     {
-
-        Pages\ListBase::setResource(static::class);
-
         return [
-            'index' => Pages\ListBase::route('/'),
-            'create' => Pages\CreateBase::route('/create'),
-            'edit' => Pages\EditBase::route('/{record}/edit'),
+            'index' => Pages\Listing::route('/'),
+            'create' => Pages\Creating::route('/create'),
+            'edit' => Pages\Editing::route('/{record}/edit'),
         ];
     }
 
