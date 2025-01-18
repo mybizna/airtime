@@ -1,18 +1,27 @@
 <?php
-
 namespace Modules\Airtime\Models;
 
+use Base\Casts\Money;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 use Modules\Account\Models\Payment;
 use Modules\Airtime\Models\Prefix;
 use Modules\Airtime\Models\Provider;
 use Modules\Base\Models\BaseModel;
 use Modules\Core\Models\Country;
 use Modules\Partner\Models\Partner;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Airtime extends BaseModel
 {
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'total' => Money::class, // Use the custom MoneyCast
+    ];
 
     /**
      * The fields that can be filled
@@ -74,10 +83,10 @@ class Airtime extends BaseModel
     }
     public function migration(Blueprint $table): void
     {
-        $table->id();
 
         $table->bigInteger('phone');
-        $table->decimal('amount', 11);
+        $table->integer('amount');
+        $table->string('currency')->default('USD');
         $table->boolean('paid')->nullable()->default(false);
         $table->foreignId('payment_id')->nullable()->constrained(table: 'account_payment')->onDelete('set null');
         $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');

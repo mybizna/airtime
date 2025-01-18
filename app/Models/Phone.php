@@ -35,7 +35,6 @@ class Phone extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
 
         $table->bigInteger('phone');
         $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');

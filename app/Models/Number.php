@@ -35,7 +35,6 @@ class Number extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
 
         $table->bigInteger('phone');
         $table->dateTime('date_used', 6)->nullable();
