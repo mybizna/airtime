@@ -8,6 +8,8 @@ use Modules\Airtime\Models\Provider;
 use Modules\Base\Models\BaseModel;
 use Modules\Core\Models\Country;
 use Modules\Partner\Models\Partner;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Airtime extends BaseModel
 {
@@ -30,7 +32,7 @@ class Airtime extends BaseModel
      * Add relationship to Prefix
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function prefix()
+    public function prefix(): BelongsTo
     {
         return $this->belongsTo(Prefix::class);
     }
@@ -39,7 +41,7 @@ class Airtime extends BaseModel
      * Add relationship to Provider
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function provider()
+    public function provider(): BelongsTo
     {
         return $this->belongsTo(Provider::class);
     }
@@ -48,7 +50,7 @@ class Airtime extends BaseModel
      * Add relationship to Country
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function country()
+    public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
     }
@@ -57,7 +59,7 @@ class Airtime extends BaseModel
      * Add relationship to Payment
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function payment()
+    public function payment(): BelongsTo
     {
         return $this->belongsTo(Payment::class);
     }
@@ -66,9 +68,27 @@ class Airtime extends BaseModel
      * Add relationship to Partner
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function partner()
+    public function partner(): BelongsTo
     {
         return $this->belongsTo(Partner::class);
+    }
+    public function migration(Blueprint $table): void
+    {
+        $table->id();
+
+        $table->bigInteger('phone');
+        $table->decimal('amount', 11);
+        $table->boolean('paid')->nullable()->default(false);
+        $table->foreignId('payment_id')->nullable()->constrained(table: 'account_payment')->onDelete('set null');
+        $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->dateTime('purchase_date', 6)->nullable();
+        $table->foreignId('prefix_id')->nullable()->constrained(table: 'airtime_prefix')->onDelete('set null');
+        $table->foreignId('provider_id')->nullable()->constrained(table: 'airtime_provider')->onDelete('set null');
+        $table->foreignId('country_id')->nullable()->constrained(table: 'core_country')->onDelete('set null');
+        $table->boolean('completed')->nullable()->default(false);
+        $table->boolean('successful')->nullable()->default(false);
+        $table->boolean('status')->nullable()->default(false);
+
     }
 
 }

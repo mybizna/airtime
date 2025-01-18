@@ -4,6 +4,8 @@ namespace Modules\Airtime\Models;
 
 use Modules\Airtime\Models\Provider;
 use Modules\Base\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 
 class Prefix extends BaseModel
 {
@@ -26,8 +28,18 @@ class Prefix extends BaseModel
      * Add relationship to Provider
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function provider()
+    public function provider(): BelongsTo
     {
         return $this->belongsTo(Provider::class);
+    }
+
+    public function migration(Blueprint $table): void
+    {
+        $table->id();
+
+        $table->integer('prefix');
+        $table->boolean('published')->default(false);
+        $table->foreignId('provider_id')->nullable()->constrained(table: 'airtime_provider')->onDelete('set null');
+
     }
 }

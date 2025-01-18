@@ -3,6 +3,7 @@
 namespace Modules\Airtime\Models;
 
 use Modules\Base\Models\BaseModel;
+use Illuminate\Database\Schema\Blueprint;
 
 class Provider extends BaseModel
 {
@@ -20,4 +21,15 @@ class Provider extends BaseModel
      * @var string
      */
     protected $table = "airtime_provider";
+
+    public function migration(Blueprint $table): void
+    {
+            $table->id();
+
+            $table->string('name');
+            $table->longText('description')->nullable();
+            $table->boolean('published')->default(false);
+            $table->string('alias');
+
+    }
 }
