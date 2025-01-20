@@ -88,16 +88,25 @@ class Airtime extends BaseModel
         $table->integer('amount');
         $table->string('currency')->default('USD');
         $table->boolean('paid')->nullable()->default(false);
-        $table->foreignId('payment_id')->nullable()->constrained(table: 'account_payment')->onDelete('set null');
-        $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->unsignedBigInteger('payment_id')->nullable();
+        $table->unsignedBigInteger('partner_id')->nullable();
         $table->dateTime('purchase_date', 6)->nullable();
-        $table->foreignId('prefix_id')->nullable()->constrained(table: 'airtime_prefix')->onDelete('set null');
-        $table->foreignId('provider_id')->nullable()->constrained(table: 'airtime_provider')->onDelete('set null');
-        $table->foreignId('country_id')->nullable()->constrained(table: 'core_country')->onDelete('set null');
+        $table->unsignedBigInteger('prefix_id')->nullable();
+        $table->unsignedBigInteger('provider_id')->nullable();
+        $table->unsignedBigInteger('country_id')->nullable();
         $table->boolean('completed')->nullable()->default(false);
         $table->boolean('successful')->nullable()->default(false);
         $table->boolean('status')->nullable()->default(false);
 
+    }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('payment_id')->references('id')->on('account_payment')->onDelete('set null');
+        $table->foreign('partner_id')->references('id')->on('partner_partner')->onDelete('set null');
+        $table->foreign('prefix_id')->references('id')->on('airtime_prefix')->onDelete('set null');
+        $table->foreign('provider_id')->references('id')->on('airtime_provider')->onDelete('set null');
+        $table->foreign('country_id')->references('id')->on('core_country')->onDelete('set null');
     }
 
 }

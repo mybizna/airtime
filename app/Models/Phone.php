@@ -1,11 +1,10 @@
 <?php
-
 namespace Modules\Airtime\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Models\BaseModel;
 use Modules\Partner\Models\Partner;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Phone extends BaseModel
 {
@@ -37,7 +36,11 @@ class Phone extends BaseModel
     {
 
         $table->bigInteger('phone');
-        $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->unsignedBigInteger('partner_id')->nullable();
+    }
 
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('partner_id')->references('id')->on('partner_partner')->onDelete('set null');
     }
 }

@@ -1,11 +1,10 @@
 <?php
-
 namespace Modules\Airtime\Models;
 
-use Modules\Airtime\Models\Provider;
-use Modules\Base\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
+use Modules\Airtime\Models\Provider;
+use Modules\Base\Models\BaseModel;
 
 class Prefix extends BaseModel
 {
@@ -38,7 +37,11 @@ class Prefix extends BaseModel
 
         $table->integer('prefix');
         $table->boolean('published')->default(false);
-        $table->foreignId('provider_id')->nullable()->constrained(table: 'airtime_provider')->onDelete('set null');
+        $table->unsignedBigInteger('provider_id')->nullable();
 
+    }
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('provider_id')->references('id')->on('airtime_provider')->onDelete('set null');
     }
 }

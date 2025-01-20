@@ -39,9 +39,14 @@ class Number extends BaseModel
         $table->bigInteger('phone');
         $table->dateTime('date_used', 6)->nullable();
         $table->boolean('is_used')->nullable()->default(false);
-        $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->unsignedBigInteger('partner_id')->nullable();
         $table->bigInteger('serial_no');
 
+    }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('partner_id')->references('id')->on('partner_partner')->onDelete('set null');
     }
 
 }
