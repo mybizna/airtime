@@ -4,9 +4,6 @@ namespace Modules\Airtime\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Modules\Airtime\Filament\Resources\AirtimeResource\Pages;
 use Modules\Airtime\Models\Airtime;
 use Modules\Base\Filament\Resources\BaseResource;
 
@@ -52,75 +49,6 @@ class AirtimeResource extends BaseResource
                 Forms\Components\Toggle::make('successful'),
                 Forms\Components\Toggle::make('status'),
             ]);
-    }
-
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('phone')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('amount')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\IconColumn::make('paid')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('payment_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('partner_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('purchase_date')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('prefix_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('provider_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('country_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\IconColumn::make('completed')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('successful')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                Tables\Filters\TrashedFilter::make(),
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                    Tables\Actions\ForceDeleteBulkAction::make(),
-                    Tables\Actions\RestoreBulkAction::make(),
-                ]),
-            ]);
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\Listing::route('/'),
-            'create' => Pages\Creating::route('/create'),
-            'edit' => Pages\Editing::route('/{record}/edit'),
-        ];
     }
 
 }
