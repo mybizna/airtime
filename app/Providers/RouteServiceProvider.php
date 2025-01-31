@@ -22,8 +22,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(): void
     {
-        $this->mapApiRoutes();
-
         $this->mapWebRoutes();
     }
 
@@ -37,13 +35,5 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')->group(module_path('Airtime', '/routes/web.php'));
     }
 
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     */
-    protected function mapApiRoutes(): void
-    {
-        Route::middleware('api')->prefix('api')->name('api.')->group(module_path('Airtime', '/routes/api.php'));
-    }
+
 }

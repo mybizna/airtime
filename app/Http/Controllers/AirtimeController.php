@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Modules\Airtime\Classes\AirtimeProcessor;
 use Modules\Airtime\Models\Airtime;
+use Modules\Base\Http\Controllers\BaseController;
 
-class AirtimeController extends Controller
+class AirtimeController extends BaseController
 {
     public function index(Request $request)
     {
